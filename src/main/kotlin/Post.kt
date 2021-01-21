@@ -1,0 +1,31 @@
+import Attachment.Attachment
+
+data class Post(
+    val id: Int = 0,
+    val ownerId: Int = 0,
+    val fromId: Int = 0,
+    val createdBy: Int? = null,
+    val date: Long = 0,
+    val text: String = "No text",
+    val replyOwnerId: Int? = null,
+    val replyPostId: Int? = null,
+    val friendsOnly: Boolean = false,
+    val comments: Comments = Comments(),
+    val copyright: String = "ru.netology (c)",
+    val likes: Likes = Likes(),
+    val reposts: Repost = Repost(),
+    val views: Views = Views(),
+    val postType: String = "post",
+    val postSource: PostSource? = null,
+    val attachments: Array<Attachment>,
+    val geo: Geo? = null,
+    val signerId: Int? = null,
+    val copyHistory: ArrayList<Post>? = null,
+    val canPin: Boolean = false,
+    val canDelete: Boolean = true,
+    val canEdit: Boolean = true,
+    val isPinned: Boolean = false,
+    val markedAsAds: Boolean = false,
+    val isFavorite: Boolean = false,
+    val postponedId: Int = 0
+)
