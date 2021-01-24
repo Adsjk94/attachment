@@ -1,38 +1,42 @@
-import Attachment.*
-
-
-object WallService {
-    private var id = 0
-    var posts = emptyArray<Post>()
+class WallService {
+    private var posts = emptyArray<Post>()
+    private var nextId: Int = 0
+    private var comments = emptyArray<Comment>()
 
     fun add(post: Post): Post {
-        posts += if (posts.isEmpty()) post.copy(id = 1)
-        else post.copy(id = posts.last().id + 1)
+        posts += post
         return posts.last()
     }
 
     fun update(post: Post): Boolean {
-        for ((index, currentPost) in posts.withIndex()) {
-            if (currentPost.id == post.id) {
-                posts[index] = post.copy(ownerId = currentPost.ownerId, date = currentPost.date)
+        for (targetPost in posts) {
+            if (targetPost.id == post.id) {
+                targetPost.text = "some text"
+                println("Пост обновлён")
                 return true
             }
+            break
         }
+        println("Не удалось обновить пост")
         return false
     }
 
-
-    fun main(post: Post) {
-        println(post.text)
-        for ((index, att) in post.attachments.withIndex()) {
-            when (att) {
-                is AttachmentLink -> println("ссылка")
-                is AttachmentVideo -> println("видео")
-                is AttachmentDoc -> println("документы")
-                is AttachmentPhoto -> println("фото")
-                is AttachmentAudio -> println("музыка")
+    fun createComment(comment: Comment): Boolean {
+        for (targetPost in posts) {
+            if (targetPost.id == comment.postID) {
+                comments += comment
+                println("Комментарий добавлен")
+                return true
             }
+            break
         }
-        println("copyright ${post.copyright}")
+        println("Не удалось создать комментарий")
+        throw PostNotFoundException("Не удалось добавить комментарий")
+        return false
     }
 }
+
+class PostNotFoundException(s: String) : Throwable() {
+
+}
+

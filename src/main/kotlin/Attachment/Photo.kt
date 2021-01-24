@@ -7,7 +7,7 @@ data class Photo(
     val userId: Int,
     val text: String,
     val date: Long,
-    val sizes: Array<PhotoCopy>,
+    val sizes: Array<Any>?,
     val width: Int,
     val height: Int
 )

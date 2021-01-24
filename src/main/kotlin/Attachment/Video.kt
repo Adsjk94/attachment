@@ -13,7 +13,7 @@ data class Video(
     val views: Int,
     val localViews: Int,
     val comments: Int,
-    val player: String,
+    val player: String?,
     val platform: String,
     val canEdit: Boolean,
     val canAdd: Boolean,
