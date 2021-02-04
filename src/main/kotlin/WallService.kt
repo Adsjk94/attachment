@@ -15,7 +15,6 @@ class WallService {
                 println("Пост обновлён")
                 return true
             }
-            break
         }
         println("Не удалось обновить пост")
         return false
@@ -28,7 +27,6 @@ class WallService {
                 println("Комментарий добавлен")
                 return true
             }
-            break
         }
         println("Не удалось создать комментарий")
         throw PostNotFoundException("Не удалось добавить комментарий")
